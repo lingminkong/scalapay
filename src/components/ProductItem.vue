@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "Product Item",
+  name: "ProductItem",
   props: ["data"],
   data() {
     return {};

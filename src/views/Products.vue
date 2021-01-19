@@ -21,7 +21,7 @@
 <script>
 import ProductItem from "@/components/ProductItem";
 export default {
-  name: "ProductList",
+  name: "Products",
   components: {
     ProductItem
   },
@@ -32,7 +32,7 @@ export default {
           id: 1,
           name: "iMac pro",
           category: "Computers",
-          subcategory: ["Desktop"],
+          subcategory: ["Desktop", "Gaming"],
           brand: "Apple",
           gtin: "72527273070",
           sku: "12342",
@@ -53,7 +53,7 @@ export default {
           gtin: "725272730701",
           sku: "12341",
           price: {
-            amount: 1999,
+            amount: 1200,
             currency: "EUR"
           },
           description:

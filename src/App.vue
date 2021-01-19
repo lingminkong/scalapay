@@ -1,6 +1,6 @@
 <template>
-  <Nav />
-  <router-view />
+  <Nav :cart="cart" />
+  <router-view @add-to-cart="updateCart" :cart="cart" />
 </template>
 
 <script>
@@ -9,6 +9,16 @@ export default {
   name: "app",
   components: {
     Nav
+  },
+  data() {
+    return {
+      cart: []
+    };
+  },
+  methods: {
+    updateCart(product) {
+      this.cart.push(product);
+    }
   }
 };
 </script>
@@ -18,7 +28,6 @@ export default {
   font-family: $font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 

@@ -1,18 +1,19 @@
 <template>
+  <button @click="autoComplete">Auto Complete</button>
   <form class="order-form" @submit.prevent="onSubmit">
     <div class="order-form__group">
       <h3 class="order-form__title">Your Infomation</h3>
       <div class="order-form__input-group">
-        <label for="first-name">First Name:</label>
-        <input id="first-name" type="text" v-model="firstName" required />
+        <label for="given-names">Given Names:</label>
+        <input id="given-names" type="text" v-model="givenNames" required />
       </div>
       <div class="order-form__input-group">
-        <label for="last-name">Last Name:</label>
-        <input id="last-name" type="text" v-model="lastName" required />
+        <label for="surname">Surname:</label>
+        <input id="surname" type="text" v-model="surname" required />
       </div>
       <div class="order-form__input-group">
         <label for="phone">Phone Number:</label>
-        <input id="phone" type="tel" v-model="phoneNumber" required />
+        <input id="phone" type="tel" v-model="phoneNumber" />
       </div>
       <div class="order-form__input-group">
         <label for="email">Email:</label>
@@ -71,47 +72,27 @@
         />
       </div>
     </div>
-    <div class="order-form__group">
+    <div class="order-form__input-group">
+      <label for="same-address">same to Shipping Information?</label>
+      <input id="same-address" type="checkbox" v-model="sameAddress" />
+    </div>
+    <div v-show="!sameAddress" class="order-form__group">
       <h3 class="order-form__title">Your Billing Infomation</h3>
       <div class="order-form__input-group">
-        <label for="same-address">same to Shipping Information?</label>
-        <input
-          id="same-address"
-          type="checkbox"
-          v-model="sameAddress"
-          required
-        />
-      </div>
-      <div class="order-form__input-group">
         <label for="billing-name">Billing Name:</label>
-        <input id="billing-name" type="text" v-model="billingName" required />
+        <input id="billing-name" type="text" v-model="billingName" />
       </div>
       <div class="order-form__input-group">
         <label for="billing-address">Billing Address:</label>
-        <input
-          id="billing-address"
-          type="text"
-          v-model="billingAddress"
-          required
-        />
+        <input id="billing-address" type="text" v-model="billingAddress" />
       </div>
       <div class="order-form__input-group">
         <label for="billing-suburb">Billing Suburb:</label>
-        <input
-          id="billing-suburb"
-          type="text"
-          v-model="billingSuburb"
-          required
-        />
+        <input id="billing-suburb" type="text" v-model="billingSuburb" />
       </div>
       <div class="order-form__input-group">
         <label for="billing-postcode">Billing Postcode:</label>
-        <input
-          id="billing-postcode"
-          type="text"
-          v-model="billingPostcode"
-          required
-        />
+        <input id="billing-postcode" type="text" v-model="billingPostcode" />
       </div>
       <div class="order-form__input-group">
         <label for="billing-country-code">Billing Country Code:</label>
@@ -119,38 +100,23 @@
           id="billing-country-code"
           type="text"
           v-model="billingCountryCode"
-          required
         />
       </div>
       <div class="order-form__input-group">
         <label for="billing-phone">Billing Phone Number:</label>
-        <input
-          id="billing-phone"
-          type="tel"
-          v-model="billingPhoneNumber"
-          required
-        />
+        <input id="billing-phone" type="tel" v-model="billingPhoneNumber" />
       </div>
     </div>
-
-    {{ sameAddress }}
-    <select id="rating" v-model.number="rating">
-      <option>5</option>
-      <option>4</option>
-      <option>3</option>
-      <option>2</option>
-      <option>1</option>
-    </select>
-
     <input class="button" type="submit" value="Submit" />
   </form>
 </template>
 <script>
 export default {
+  name: "OrderForm",
   data() {
     return {
-      firstName: "",
-      lastName: "",
+      givenNames: "",
+      surname: "",
       phoneNumber: "",
       email: "",
       shippingName: "",
@@ -167,6 +133,48 @@ export default {
       billingCountryCode: "",
       billingPhoneNumber: ""
     };
+  },
+  methods: {
+    onSubmit() {
+      let consumerInfo = {
+        consumer: {
+          phoneNumber: this.phoneNumber,
+          givenNames: this.givenNames,
+          surname: this.surname,
+          email: this.email
+        },
+        shipping: {
+          name: this.shippingName,
+          line1: this.shippingAddress,
+          suburb: this.shippingSuburb,
+          postcode: this.shippingPostcode,
+          countryCode: this.shippingCountryCode,
+          phoneNumber: this.shippingPhoneNumber
+        }
+      };
+      this.$emit("form-submitted", consumerInfo);
+
+      this.name = "";
+      this.review = "";
+      this.rating = null;
+      this.recommend = null; // solution
+    },
+    autoComplete() {
+      this.givenNames = "Michael";
+      this.surname = "Kong";
+      this.email = "test@test.test";
+      this.shippingName = "Michael Kong";
+      this.shippingAddress = "Crown Street";
+      this.shippingSuburb = "Wollongong";
+      this.shippingPostcode = "2500";
+      this.shippingCountryCode = "AUS";
+      this.shippingPhoneNumber = "0411111111";
+    }
   }
 };
 </script>
+<style lang="scss" scoped>
+.order-form {
+  @include flex(column, center, flex-start);
+}
+</style>

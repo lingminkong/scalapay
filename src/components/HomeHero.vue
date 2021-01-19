@@ -5,19 +5,19 @@
     <p>Pay installment in 3</p>
     <p v-if="config.minimumAmount.amount">As little as {{ min }}</p>
     <p v-if="config.maximumAmount.amount">As much as {{ max }}</p>
-    <Button text="learn more" />
+
+    <router-link to="/products" class="nav-item"
+      >Check out our products</router-link
+    >
   </div>
 </template>
 
 <script>
-import Button from "@/components/BaseButton";
 import api from "@/services/Scalapay";
 
 export default {
   name: "HomeHero",
-  components: {
-    Button
-  },
+  components: {},
   data() {
     return {
       config: {
@@ -38,6 +38,7 @@ export default {
   methods: {
     async getConfig() {
       api.getConfig().then(response => (this.config = response));
+      // api.merchant().then(response => console.log(response));
     }
   },
   computed: {
@@ -65,8 +66,8 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  color: black;
-  height: 50vh;
+  background-color: black;
+  color: white;
+  height: 100vh;
 }
 </style>

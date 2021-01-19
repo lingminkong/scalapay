@@ -5,8 +5,10 @@
         <img alt="Scalapay logo" src="@/assets/logo.png" />
       </router-link>
       <div class="nav-items">
-        <router-link to="/cart" class="nav-item">Cart</router-link>
-        <router-link to="/checkout" class="nav-item">Checkout</router-link>
+        <router-link to="/products" class="nav-item">Products</router-link>
+        <router-link to="/cart" class="nav-item"
+          >Cart<span v-if="cart.length">({{ cart.length }})</span>
+        </router-link>
       </div>
     </div>
   </nav>
@@ -15,7 +17,7 @@
 <script>
 export default {
   name: "Nav",
-  props: {}
+  props: ["cart"]
 };
 </script>
 
@@ -24,9 +26,9 @@ export default {
 .nav {
   background-color: white;
   padding: 1rem 0;
-  @media screen and (min-width: 768px) {
-    padding: 1.3rem 0;
-  }
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .container {
   display: flex;
@@ -40,7 +42,7 @@ export default {
   display: inline-block;
 
   img {
-    height: 40px;
+    height: 30px;
     width: auto;
     @media screen and (min-width: 768px) {
       height: 50px;
