@@ -1,0 +1,188 @@
+// general
+p {
+  margin-bottom: 1.5rem;
+  line-height: 2;
+  font-size: rem-calc(16);
+  font-weight: $font-normal;
+}
+
+a {
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  text-decoration: none;
+  color: $primary-color;
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+// buttons
+.btn {
+  display: inline-block;
+  position: relative;
+  width: auto;
+  padding: 12px 40px;
+
+  transition-property: color, background-color, border-color;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+
+  background: $primary-color;
+
+  color: $white;
+  font-family: $font-family;
+  font-size: 1rem;
+  font-weight: $font-bold;
+  line-height: 1;
+
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  appearance: none;
+  box-shadow: none;
+
+  cursor: pointer;
+  z-index: 0;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    content: "";
+    display: inline-block;
+    background-color: $secondary-color;
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.btn--line {
+  @extend .btn;
+  @include font($font-family, $font-bold, 16);
+  background-color: transparent;
+  color: $primary-color;
+  padding: 0.2rem 1rem 0.8rem;
+  min-width: 7rem;
+  border-bottom: 3px solid $primary-color;
+
+  &::before {
+    height: 3px;
+    bottom: -3px;
+  }
+
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
+// base form elemenet styles
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"] {
+  border: none;
+  background-color: $white;
+  min-height: rem-calc(40);
+  color: $black;
+  padding: 0.5rem 1rem 0.5rem 0.2rem;
+  width: 100%;
+  border-bottom: 3px solid rgba($primary-color, 0.5);
+
+  &::placeholder {
+    @include font($font-family, $font-normal, 14);
+    font-style: italic;
+    color: rgba($black, 0.8);
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom: 3px solid rgba($primary-color, 0.8);
+  }
+
+  &.error {
+    border-bottom: 3px solid rgba($message-red, 0.7);
+  }
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+}
+
+label {
+  display: inline-block;
+  font-size: rem-calc(14);
+  font-weight: $font-normal;
+  line-height: 1.7;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  color: rgba($black, 0.7);
+  margin: 0;
+  border-radius: 0.5rem;
+  width: auto;
+}
+
+textarea {
+  border: none;
+  background-color: rgba($white, 0.7);
+  height: 8rem;
+  color: $black;
+  resize: vertical;
+  padding: 0.5rem 0;
+  border-radius: 0;
+  background-color: $white;
+  width: 100%;
+  border-bottom: 3px solid rgba($secondary-color, 0.21);
+
+  &::placeholder {
+    @include font($font-family, $font-normal, 14);
+    font-style: italic;
+    color: rgba($black, 0.8);
+  }
+
+  @media (min-width: $screen-md) {
+    height: 10rem;
+  }
+}
+
+input[type="submit"] {
+  @include font($font-family, $font-bold, 14);
+  transition: all 0.3s ease-in-out;
+  min-height: rem-calc(30);
+  line-height: 1;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
+
+  @media (min-width: $screen-md) {
+    min-height: rem-calc(40);
+  }
+}
+
+.error-message {
+  @include font($font-family, $font-bold, 0.9rem);
+  color: $message-red;
+  text-align: center;
+}
+
+.success-message {
+  @include font($font-family, $font-bold, 0.9rem);
+  color: $message-green;
+}

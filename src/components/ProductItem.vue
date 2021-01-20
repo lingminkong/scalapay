@@ -1,9 +1,6 @@
 <template>
   <div class="card">
-    <div
-      class="card__image"
-      :style="{ backgroundImage: `url(${data.image})` }"
-    ></div>
+    <img :src="data.image" alt="data.name" class="card__image" />
     <div class="card__title">{{ data.name }}</div>
   </div>
 </template>
@@ -24,8 +21,8 @@ export default {
   width: 20rem;
   &__image {
     @include background-image;
-    height: 20rem;
-    width: 20rem;
+    height: 10rem;
+    width: 10rem;
     margin-bottom: 1rem;
   }
 

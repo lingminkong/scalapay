@@ -19,7 +19,7 @@
           id="quantity"
           v-model="product.quantity"
         />
-        <button @click="addToCart">Add to cart</button>
+        <button class="btn" @click="addToCart">Add to cart</button>
       </div>
     </div>
   </div>
@@ -39,7 +39,7 @@ export default {
           gtin: "72527273070",
           sku: "12342",
           price: {
-            amount: 69,
+            amount: "69",
             currency: "EUR"
           },
           description:
@@ -55,7 +55,7 @@ export default {
           gtin: "725272730701",
           sku: "12341",
           price: {
-            amount: 99,
+            amount: "99",
             currency: "EUR"
           },
           description:
@@ -90,7 +90,7 @@ export default {
 
 <style lang="scss" scoped>
 .single-product {
-  padding-top: 100px;
+  padding: $header-height 0;
   .container {
     @include flex(column-reverse, flex-start, flex-start);
     @media screen and (min-width: 768px) {

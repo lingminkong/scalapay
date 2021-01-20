@@ -29,6 +29,8 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  height: $header-height;
+  z-index: $z-nav;
 }
 .container {
   display: flex;

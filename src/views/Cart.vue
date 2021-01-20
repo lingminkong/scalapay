@@ -16,7 +16,7 @@
         </div>
         <p class="cart__shipping">Shipping: flat rate {{ shipping }} EUR</p>
         <p class="cart__total">Total: {{ total }} EUR</p>
-        <button @click="checkout">Pay with Scalapay</button>
+        <button class="btn" @click="checkout">Pay with Scalapay</button>
         <p class="cart__intallments">
           in 3 installments of {{ installment }} EUR
         </p>
@@ -26,17 +26,26 @@
         <router-link to="/products" class="nav-item">Products</router-link> to
         checkour our products
       </div>
-      <div v-show="showForm" class="cart__form">
+    </div>
+    <div
+      v-show="showForm"
+      :class="{ sending: sendingOrder }"
+      class="cart__form"
+    >
+      <div class="container">
         <order-form @form-submitted="sendOrder"></order-form>
+        <p v-if="sendingError" class="error-message">
+          Ooops, something went wrong when sending your order, please try again
+          or contact us.
+        </p>
       </div>
     </div>
-    <button @click="redirect">Redirect</button>
   </div>
 </template>
 
 <script>
 import OrderForm from "@/components/OrderForm";
-// import api from "@/services/Scalapay";
+import api from "@/services/Scalapay";
 export default {
   name: "Cart",
   components: {
@@ -53,13 +62,17 @@ export default {
       shipping: 10,
       showForm: false,
       items: this.cart,
-      checkoutUrl: ""
+      checkoutUrl: "",
+      sendingOrder: false,
+      sendingStatus: false
     };
   },
   watch: {
     checkoutUrl: function(newUrl) {
       if (newUrl) {
         window.location.href = newUrl;
+        this.sendingError = false;
+        this.sendingOrder = false;
       }
     }
   },
@@ -86,7 +99,7 @@ export default {
     sendOrder(consumerInfo) {
       let orderInfo = { ...consumerInfo };
       orderInfo.totalAmount = {
-        amount: this.total,
+        amount: this.total.toString(),
         currency: "EUR"
       };
 
@@ -96,19 +109,22 @@ export default {
       };
       orderInfo.merchantReference = "merchantOrder-1234";
       orderInfo.items = [...JSON.parse(JSON.stringify(this.cart))];
-      // api.sendOrders(orderInfo).then(response => console.log(response));
-    },
-    redirect() {
-      setTimeout(() => {
-        this.checkoutUrl = "https://google.com";
-      }, 2000);
+      this.sendingOrder = true;
+      api
+        .sendOrders(JSON.stringify(orderInfo))
+        .then(response => (this.checkoutUrl = response.checkoutUrl))
+        .catch(() => {
+          this.sendingError = true;
+          this.sendingOrder = false;
+        });
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .cart {
-  padding-top: 100px;
+  padding: $header-height 0;
+  position: relative;
 
   &__list {
     border: 2px solid $primary-color;
@@ -123,6 +139,14 @@ export default {
     &__image {
       width: 10rem;
       height: auto;
+    }
+  }
+
+  &__form {
+    margin-top: 3rem;
+
+    &.sending {
+      filter: blur(5px);
     }
   }
 }

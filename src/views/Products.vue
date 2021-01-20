@@ -3,15 +3,17 @@
     <div class="container">
       <h2 class="products__title">Checkout our products</h2>
       <div class="products__list">
-        <div
-          class="products__item"
-          v-for="product in products"
-          :key="product.id"
-          :product="product"
-        >
-          <router-link :to="`/product/${product.id}`">
-            <product-item :data="product"></product-item>
-          </router-link>
+        <div class="row">
+          <div
+            class="products__item col-md-3"
+            v-for="product in products"
+            :key="product.id"
+            :product="product"
+          >
+            <router-link :to="`/product/${product.id}`">
+              <product-item :data="product"></product-item>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -68,11 +70,9 @@ export default {
 
 <style lang="scss" scoped>
 .products {
+  padding: $header-height 0;
   &__list {
-    @include flex(column, flex-start, flex-start);
-    @media screen and (min-width: $screen-md) {
-      @include flex(row, center, center);
-    }
+    width: 100%;
   }
 
   &__item {

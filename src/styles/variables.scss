@@ -1,10 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap");
-$font-family: "Raleway", sans-serif;
-$font-bold: 600;
-$font-normal: 300;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+$font-family: "Poppins", sans-serif;
+$font-bold: 700;
+$font-normal: 400;
 
 $primary-color: #001721;
 $secondary-color: #6a8da2;
+$black: #111111;
+$white: #ffffff;
+
+$message-red: rgba(#e12c29, 0.7);
+$message-green: rgba(#0b6623, 0.7);
 
 //  Breakpoints
 $screen-xs: 360px;
@@ -26,4 +31,7 @@ $container-padding-md: 30px;
 $grid-gutter: 20px;
 $cols: 12;
 $col-width: 100% / $cols;
-$section-padding: 35px;
+
+$z-nav: 100;
+
+$header-height: 80px;

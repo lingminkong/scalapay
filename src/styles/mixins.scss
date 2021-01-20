@@ -13,3 +13,8 @@
   align-items: $align-items;
   justify-content: $justify-content;
 }
+@mixin font($family: $font-family, $weight: $font-normal, $size: 1rem) {
+  font-family: $family;
+  font-weight: $weight;
+  font-size: $size;
+}
