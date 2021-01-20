@@ -35,3 +35,4 @@ $col-width: 100% / $cols;
 $z-nav: 100;
 
 $header-height: 80px;
+$content-padding: calc(#{$header-height} + 2rem);

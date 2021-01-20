@@ -5,7 +5,12 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    props: {
+      config: {
+        type: Object
+      }
+    }
   },
   {
     path: "/products",
@@ -19,6 +24,9 @@ const routes = [
     props: {
       cart: {
         type: Array
+      },
+      config: {
+        type: Object
       }
     }
   },

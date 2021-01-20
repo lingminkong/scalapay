@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <home-hero />
+    <home-hero :config="config" />
   </div>
 </template>
 
@@ -8,6 +8,11 @@
 import HomeHero from "@/components/HomeHero";
 export default {
   name: "Home",
+  props: {
+    config: {
+      type: Object
+    }
+  },
   components: {
     HomeHero
   },
