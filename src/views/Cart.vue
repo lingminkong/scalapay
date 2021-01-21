@@ -130,7 +130,8 @@ export default {
       return (
         this.cart.reduce(
           (accumulator, currentValue) =>
-            accumulator + currentValue.price.amount * currentValue.quantity,
+            accumulator +
+            parseFloat(currentValue.price.amount) * currentValue.quantity,
           0
         ) + this.shipping
       );
@@ -141,7 +142,8 @@ export default {
     isOverLimit() {
       if (
         !this.config.isLoading &&
-        this.installment > parseFloat(this.config.data.maximumAmount.amount)
+        parseFloat(this.installment) >
+          parseFloat(this.config.data.maximumAmount.amount)
       ) {
         return true;
       }
