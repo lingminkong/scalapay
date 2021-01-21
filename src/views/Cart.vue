@@ -97,7 +97,7 @@ export default {
   },
   props: {
     cart: {
-      type: Object,
+      type: Array,
       required: true
     },
     config: {

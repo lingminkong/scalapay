@@ -58,7 +58,7 @@ export default {
           gtin: "72527273070",
           sku: "12342",
           price: {
-            amount: 2400,
+            amount: "2400",
             currency: "EUR"
           },
           description:
@@ -74,7 +74,7 @@ export default {
           gtin: "725272730701",
           sku: "12341",
           price: {
-            amount: 1200,
+            amount: "1200",
             currency: "EUR"
           },
           description:
@@ -90,7 +90,7 @@ export default {
           gtin: "725272730702",
           sku: "12343",
           price: {
-            amount: 300,
+            amount: "300",
             currency: "EUR"
           },
           description:
@@ -106,7 +106,7 @@ export default {
           gtin: "725272730703",
           sku: "123432",
           price: {
-            amount: 700,
+            amount: "700",
             currency: "EUR"
           },
           description:
@@ -122,7 +122,7 @@ export default {
           gtin: "725272730704",
           sku: "1234322",
           price: {
-            amount: 0.3,
+            amount: "0.3",
             currency: "EUR"
           },
           description:
@@ -138,7 +138,7 @@ export default {
           gtin: "725272730705",
           sku: "1234132",
           price: {
-            amount: 10,
+            amount: "10",
             currency: "EUR"
           },
           description:

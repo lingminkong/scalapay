@@ -2,6 +2,7 @@
   <div class="card">
     <div
       class="card__image"
+      v-if="data.image"
       :style="{ backgroundImage: `url(${data.image})` }"
     ></div>
     <h2 class="card__title">{{ data.name }}</h2>

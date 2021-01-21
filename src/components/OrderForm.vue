@@ -131,7 +131,6 @@
         {{ error }}
       </p>
     </div>
-
     <input class="btn order-form__submit" type="submit" value="Submit" />
   </form>
 </template>
