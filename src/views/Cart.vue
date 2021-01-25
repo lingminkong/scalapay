@@ -41,11 +41,7 @@
           <strong>Shipping:</strong> flat rate {{ shipping }} EUR
         </p>
         <p class="cart__total"><strong>Total:</strong> {{ total }} EUR</p>
-        <button
-          class="btn cart__pay"
-          :class="{ disabled: !canPay }"
-          @click="checkout"
-        >
+        <button class="btn cart__pay" :disabled="!canPay" @click="checkout">
           Pay with Scalapay ♥️
         </button>
         <p class="error-message" v-if="isOverLimit">
@@ -325,7 +321,7 @@ export default {
     color: $secondary-color;
   }
 
-  &__pay.disabled {
+  &__pay:disabled {
     opacity: 0.3;
     cursor: not-allowed;
 
